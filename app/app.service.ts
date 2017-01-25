@@ -25,7 +25,7 @@ export class AppService {
     return this.http
                    .get(url, {})
                    .map(this.handleResponse.bind(this))
-                   .catch(this.handleError);
+                   .catch(this.handleError.bind(this));
   }
 
   getPriceList() {
