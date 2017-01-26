@@ -13,9 +13,13 @@ export class AppComponent implements OnInit  {
   pricelist: any;
 
   ngOnInit() {
-    this.appService.getPriceList().subscribe(d => {
-      this.pricelist = d.pricelist;
+    this.appService.getPriceList().subscribe(data => {
+      this.pricelist = data.pricelist;
     });
+  }
+
+  onHover() {
+    console.log('item.description_ru');
   }
 
 
