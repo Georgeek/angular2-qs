@@ -2,12 +2,12 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent }  from './app.component';
+import { AppComponent, SafeHtmlPipe }  from './app.component';
 import { AppService } from './app.service';
 
 @NgModule({
   imports:      [ BrowserModule, HttpModule ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, SafeHtmlPipe ],
   providers:    [ AppService ],
   bootstrap:    [ AppComponent ]
 })
