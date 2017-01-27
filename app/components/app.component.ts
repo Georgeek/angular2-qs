@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppService } from './app.service';
-
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+
+import { AppService } from './app.service';
 
 @Pipe({ name: 'safeHtml'})
 export class SafeHtmlPipe implements PipeTransform  {
   constructor(private sanitized: DomSanitizer) {}
-  transform(value) {
+
+  transform(value: any) {
     return this.sanitized.bypassSecurityTrustHtml(value);
   }
 }
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app/app.component.html',
+  templateUrl: './app/components/app.component.html',
 })
 
 export class AppComponent implements OnInit  {
@@ -29,9 +30,12 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  onHover() {
-    console.log('item.description_ru');
+  onHover(value: any) {
+    console.log(value);
+    return `
+          <div class='popover'>
+            value
+          </div>
+        `;
   }
-
-
 }
