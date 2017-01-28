@@ -5,9 +5,13 @@
       <table *ngIf="pricelist">
         <tbody>
           <tr *ngFor="let item of pricelist">
-            <td><a on-mouseover="onHover(item.description)" tooltip="test">{{ item.name }}</a></td>
+            <td>
+              <a title='{{ item.description }}'>
+                  {{ item.name }}
+              </a>
+            </td>
             <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
-            <td> <div [innerHTML]='item.description | safeHtml'></div>  </td>  
+            <td> <div [innerHTML]='item.description | safeHtml'></div> </td>
           </tr>
         </tbody>
       </table>

@@ -32,4 +32,3 @@ export class AppService {
     return this.httpGet('./ssl.json');
   }
 }
-
