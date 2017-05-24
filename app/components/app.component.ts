@@ -14,17 +14,35 @@ export class SafeHtmlPipe implements PipeTransform  {
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app/components/app.component.html',
+  templateUrl: './app/components/app.component.html'
 })
 
 export class AppComponent implements OnInit  {
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService) {
+    this.sayHi = this.sayHi.bind(this);
+    
+  }
+
 
   pricelist: any;
+  event: boolean;
+  isShown: boolean;
+  items: any;
+  id: string;
+
 
   ngOnInit() {
     this.appService.getPriceList().subscribe(data => {
       this.pricelist = data.pricelist;
     });
   }
+
+  sayHi(id) {
+    console.log('clicked: ' + id);
+    this.isShown = !this.isShown;
+    // this.event = !this.event;
+    // this.isShown = !this.isShown;
+    // id: this.id ? !this.id;
+  }
+
 }
