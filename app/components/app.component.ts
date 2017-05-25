@@ -26,9 +26,9 @@ export class AppComponent implements OnInit  {
 
   pricelist: any;
   event: boolean;
-  isShown: boolean;
   items: any;
   id: string;
+  isShown = false;
 
 
   ngOnInit() {
@@ -37,9 +37,9 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  sayHi(id) {
-    console.log('clicked: ' + id);
-    this.isShown = !this.isShown;
+  sayHi() {
+    console.log('clicked: ');
+    this.isShown = true;
     // this.event = !this.event;
     // this.isShown = !this.isShown;
     // id: this.id ? !this.id;

@@ -5,14 +5,14 @@
       <table *ngIf="pricelist">
         <tbody>
           <tr *ngFor="let item of pricelist">
-            <td  (click)="sayHi(item.id)">
+            <td  (click)="sayHi()">
               <a >
                   {{ item.name }} {{ item.id }}
               </a>
               <div 
-                attr.id="{{id.id}}"
+                attr.id="{{item.id}}"
                 [innerHTML]='item.description | safeHtml'
-                *ngIf="id" ></div>
+                *ngIf="isShown" ></div>
             </td>
             <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
           </tr>
