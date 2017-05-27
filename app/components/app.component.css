@@ -1,0 +1,10 @@
+.description--tooltip {
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 15px;
+    max-width: 500px;
+    -webkit-box-shadow: -1px 14px 18px 3px rgba(110,104,110,0.79);
+    -moz-box-shadow: -1px 14px 18px 3px rgba(110,104,110,0.79);
+    box-shadow: -1px 14px 18px 3px rgba(110,104,110,0.79);
+
+}

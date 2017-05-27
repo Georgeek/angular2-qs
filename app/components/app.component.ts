@@ -14,21 +14,17 @@ export class SafeHtmlPipe implements PipeTransform  {
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app/components/app.component.html'
+  templateUrl: './app/components/app.component.html',
+  styleUrls: ['./app/components/app.component.css']
 })
 
 export class AppComponent implements OnInit  {
-  constructor(private appService: AppService) {
-    this.sayHi = this.sayHi.bind(this);
-    
+  constructor(private appService: AppService) {    
   }
 
-
   pricelist: any;
-  event: boolean;
-  items: any;
-  id: string;
-  isShown = false;
+  isShown = true;
+  certificateDescription = 'Default certificate description';
 
 
   ngOnInit() {
@@ -37,12 +33,13 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  sayHi() {
-    console.log('clicked: ');
+  sayHi(text: string, event: any) {
     this.isShown = true;
-    // this.event = !this.event;
-    // this.isShown = !this.isShown;
-    // id: this.id ? !this.id;
+    this.certificateDescription = text;
+    // this.isShown = !this.isShown; это потребуется для mouseover mouseleave
+    // console.log('text ' + this.certificateDescription + event);
+    // Если больше 600, то сверху, если меньше 600, то снизу
+    console.log('X: ' + event.x + '; Y: ' + event.y);
   }
 
 }
