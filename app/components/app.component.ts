@@ -24,7 +24,9 @@ export class AppComponent implements OnInit  {
 
   pricelist: any;
   isShown = true;
-  certificateDescription = 'Default certificate description';
+  certificateDescription: string;
+  tooltipTop: number;
+  tooltipLeft: number;
 
 
   ngOnInit() {
@@ -33,13 +35,26 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  sayHi(text: string, event: any) {
+  onMouseEnter(text: string, event: any) {
     this.isShown = true;
-    this.certificateDescription = text;
-    // this.isShown = !this.isShown; это потребуется для mouseover mouseleave
-    // console.log('text ' + this.certificateDescription + event);
-    // Если больше 600, то сверху, если меньше 600, то снизу
-    console.log('X: ' + event.x + '; Y: ' + event.y);
+    if (text) {
+      this.certificateDescription = text;
+    } else {
+      this.certificateDescription = 'No certificate description';
+    }
+    // console.log('text ' + this.certificateDescription);
+    // console.log('X: ' + event.pageX + '; Y: ' + event.pageY);
+    if (event.y < 500) {
+      this.tooltipLeft = event.pageX - 30;
+      this.tooltipTop = event.pageY + 30;
+    } else {
+      this.tooltipLeft = event.pageX - 30;
+      this.tooltipTop = event.pageY - 250;
+    }
   }
+
+  // onMouseLeave() {
+  //   this.isShown = false;
+  // }
 
 }

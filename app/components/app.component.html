@@ -3,13 +3,18 @@
     <div class="col col-6">
       <h2>SSL pricelist</h2>
       
-      <div class="description--tooltip" *ngIf="isShown" [innerHTML]='certificateDescription | safeHtml'></div>
+      <div class="description--tooltip" *ngIf="isShown" [innerHTML]='certificateDescription | safeHtml'
+
+        [style.left.px]="tooltipLeft"
+        [style.top.px]="tooltipTop" ></div>
       
       <table *ngIf="pricelist">
         <tbody>
           <tr *ngFor="let item of pricelist">
             <td>
-              <a (click)="sayHi(item.description, $event)"> {{ item.name }}</a>
+              <a class="description--link" 
+                (click)="onMouseEnter(item.description, $event)"
+                  > {{ item.name }}</a>
             </td>
             <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
           </tr>
@@ -18,3 +23,5 @@
     </div>
   </div>
 </div>
+
+<!--(mouseleave)="onMouseLeave()"-->
