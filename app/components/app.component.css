@@ -1,41 +1,70 @@
-/*td {
-    position: relative;
-}*/
-
-.description--tooltip {
+.description__tooltip {
     border: 1px solid #eee;
     border-radius: 2px;
-    /*margin-top: 10px;*/
     padding: 15px;
-    /*width: 300px;*/
     max-width: 500px;
-    /*max-height: 180px;*/
     -webkit-box-shadow: -1px 14px 18px 3px rgba(110,104,110,0.79);
     -moz-box-shadow: -1px 14px 18px 3px rgba(110,104,110,0.79);
     box-shadow: -1px 14px 18px 3px rgba(110,104,110,0.79);
     position: absolute;
-    background-color: #fff;
+    
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-
-/*.description--tooltip::before,
-.description--tooltip::after {
-    content: "";
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    position: relative;
+/* Top arrow tooltip */
+.description__tooltip--top, .description__tooltip--bottom {
+    background-color: #fff;
 }
 
-.description--tooltip::before {
-    border-bottom: 15px solid #eee;
-    box-shadow: -1px 1px 1px rgba(110,104,110,0.79);
-    bottom: 50px;
-}*/
+.description__tooltip--top:after, .description__tooltip--top:before {
+	bottom: 100%;
+	left: 48px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+    z-index: 1;
+}
 
-/*.description--tooltip::after {
-    border-top: 10px solid rgba(110,104,110,0.79);
-    top: 55px;
-}*/
+.description__tooltip--top:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #fff;
+	border-width: 30px;
+	margin-left: -30px;
+}
+.description__tooltip--top:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #eee;
+	border-width: 36px;
+	margin-left: -36px;
+}
+
+/* Bottom arrow tooltip */
+.description__tooltip--bottom:after, .description__tooltip--bottom:before {
+	top: 100%;
+	left: 48px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+    z-index: 1;
+}
+
+.description__tooltip--bottom:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #fff;
+	border-width: 30px;
+	margin-left: -30px;
+}
+.description__tooltip--bottom:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #eee;
+	border-width: 36px;
+	margin-left: -36px;
+}

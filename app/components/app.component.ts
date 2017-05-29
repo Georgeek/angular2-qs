@@ -27,6 +27,8 @@ export class AppComponent implements OnInit  {
   certificateDescription: string;
   tooltipLeft: number;
   tooltipTop: number;
+  arrowTop: any;
+  arrowBottom: any;
 
   public show:any;
 
@@ -45,13 +47,21 @@ export class AppComponent implements OnInit  {
         this.show = !index;
       }
 
-      this.tooltipLeft = event.pageX - 30;
+      this.tooltipLeft = event.pageX - 50;
       if (event.y < 700) {
-        this.tooltipTop = event.pageY + 19;
+        this.tooltipTop = event.pageY + 40;
         console.log("under div element:" + this.tooltipTop, event.y);
+        this.arrowBottom = true;
+        console.log(this.arrowBottom);
+
+        
       } else {
-        this.tooltipTop = event.pageY - 200;
+        this.tooltipTop = event.pageY - 210;
         console.log("above div element:" + this.tooltipTop, event.y);
+        event.target.classList.add('description__tooltip--bottom'); // To ADD
+        event.target.classList.remove('description__tooltip--top'); // remove
+        this.arrowBottom = false;
+        console.log(this.arrowBottom);
       }
     }
 

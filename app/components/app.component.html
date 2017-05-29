@@ -10,11 +10,14 @@
               <a (click)="clicked(item, $event)"
                   class="description--link" 
                   > {{ item.name }}</a>
-              <div class="description--tooltip" *ngIf="show === item"
+              <div  *ngIf="show === item"
+                    class="description__tooltip"
+                    [ngClass]="{'description__tooltip--bottom': !arrowBottom , 'description__tooltip--top': arrowBottom}"
                     [innerHTML]='item.description | safeHtml'
                     [style.left.px]="tooltipLeft"
                     [style.top.px]="tooltipTop"
-                    [style.bottom.px]="tooltipBottom" ></div>
+                    [style.bottom.px]="tooltipBottom" >
+              </div>
             </td>
             <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
           </tr>
