@@ -23,11 +23,12 @@ export class AppComponent implements OnInit  {
   }
 
   pricelist: any;
-  isShown = true;
+  isShown = false;
   certificateDescription: string;
-  tooltipTop: number;
   tooltipLeft: number;
+  tooltipTop: number;
 
+  public show:any;
 
   ngOnInit() {
     this.appService.getPriceList().subscribe(data => {
@@ -35,26 +36,29 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  onMouseEnter(text: string, event: any) {
-    this.isShown = true;
-    if (text) {
-      this.certificateDescription = text;
-    } else {
-      this.certificateDescription = 'No certificate description';
-    }
-    // console.log('text ' + this.certificateDescription);
-    // console.log('X: ' + event.pageX + '; Y: ' + event.pageY);
-    if (event.y < 500) {
+    clicked(index: any, event: any) { 
+      if (index.description) {
+        // console.log(index.description);
+        this.show = index;
+      } else {
+        console.log("No certificate description found");
+        this.show = !index;
+      }
+
       this.tooltipLeft = event.pageX - 30;
-      this.tooltipTop = event.pageY + 30;
-    } else {
-      this.tooltipLeft = event.pageX - 30;
-      this.tooltipTop = event.pageY - 250;
+      if (event.y < 700) {
+        this.tooltipTop = event.pageY + 19;
+        console.log("under div element:" + this.tooltipTop, event.y);
+      } else {
+        this.tooltipTop = event.pageY - 200;
+        console.log("above div element:" + this.tooltipTop, event.y);
+      }
     }
+
+  onMouseLeave(index: any) {
+    this.show = !index;
   }
 
-  // onMouseLeave() {
-  //   this.isShown = false;
-  // }
+
 
 }

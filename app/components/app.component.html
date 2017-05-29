@@ -2,26 +2,25 @@
   <div class="row centered">
     <div class="col col-6">
       <h2>SSL pricelist</h2>
-      
-      <div class="description--tooltip" *ngIf="isShown" [innerHTML]='certificateDescription | safeHtml'
 
-        [style.left.px]="tooltipLeft"
-        [style.top.px]="tooltipTop" ></div>
-      
-      <table *ngIf="pricelist">
+      <table>
         <tbody>
-          <tr *ngFor="let item of pricelist">
-            <td>
-              <a class="description--link" 
-                (click)="onMouseEnter(item.description, $event)"
+          <tr *ngFor="let item of pricelist; let i = id">
+            <td (mouseleave)="onMouseLeave(item)">
+              <a (click)="clicked(item, $event)"
+                  class="description--link" 
                   > {{ item.name }}</a>
+              <div class="description--tooltip" *ngIf="show === item"
+                    [innerHTML]='item.description | safeHtml'
+                    [style.left.px]="tooltipLeft"
+                    [style.top.px]="tooltipTop"
+                    [style.bottom.px]="tooltipBottom" ></div>
             </td>
             <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
           </tr>
         </tbody>
       </table>
+
     </div>
   </div>
 </div>
-
-<!--(mouseleave)="onMouseLeave()"-->
