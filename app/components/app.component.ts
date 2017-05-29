@@ -23,13 +23,9 @@ export class AppComponent implements OnInit  {
   }
 
   pricelist: any;
-  isShown = false;
-  certificateDescription: string;
   tooltipLeft: number;
   tooltipTop: number;
-  arrowTop: any;
   arrowBottom: any;
-
   public show:any;
 
   ngOnInit() {
@@ -38,37 +34,25 @@ export class AppComponent implements OnInit  {
     });
   }
 
-    clicked(index: any, event: any) { 
-      if (index.description) {
-        // console.log(index.description);
-        this.show = index;
-      } else {
-        console.log("No certificate description found");
-        this.show = !index;
-      }
-
-      this.tooltipLeft = event.pageX - 50;
-      if (event.y < 700) {
-        this.tooltipTop = event.pageY + 40;
-        console.log("under div element:" + this.tooltipTop, event.y);
-        this.arrowBottom = true;
-        console.log(this.arrowBottom);
-
-        
-      } else {
-        this.tooltipTop = event.pageY - 210;
-        console.log("above div element:" + this.tooltipTop, event.y);
-        event.target.classList.add('description__tooltip--bottom'); // To ADD
-        event.target.classList.remove('description__tooltip--top'); // remove
-        this.arrowBottom = false;
-        console.log(this.arrowBottom);
-      }
+  clicked(index: any, event: any) { 
+    if (index.description) {
+      this.show = index;
+    } else {
+      console.log("No certificate description found");
+      this.show = !index;
     }
+
+    this.tooltipLeft = event.pageX - 50;
+    if (event.y < 700) {
+      this.tooltipTop = event.pageY + 40;
+      this.arrowBottom = true;        
+    } else {
+      this.tooltipTop = event.pageY - 210;
+      this.arrowBottom = false;
+    }
+  }
 
   onMouseLeave(index: any) {
     this.show = !index;
   }
-
-
-
 }
