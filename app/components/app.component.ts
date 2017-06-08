@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { AppService } from './app.service';
@@ -25,8 +24,8 @@ export class AppComponent implements OnInit  {
   pricelist: any;
   tooltipLeft: number;
   tooltipTop: number;
-  arrowBottom: any;
-  public show:any;
+  arrowBottom: boolean;
+  show:any;
 
   ngOnInit() {
     this.appService.getPriceList().subscribe(data => {
@@ -34,22 +33,17 @@ export class AppComponent implements OnInit  {
     });
   }
 
-  clicked(index: any, event: any) { 
-    if (index.description) {
-      this.show = index;
-    } else {
-      console.log("No certificate description found");
-      this.show = !index;
-    }
+  clicked(index: any, event: any) {
+    index.description ? this.show = index 
+                      : (console.log("No certificate description found"),
+                        this.show = !index);
 
     this.tooltipLeft = event.pageX - 50;
-    if (event.y < 700) {
-      this.tooltipTop = event.pageY + 40;
-      this.arrowBottom = true;        
-    } else {
-      this.tooltipTop = event.pageY - 210;
-      this.arrowBottom = false;
-    }
+    event.y < 500 ? (this.tooltipTop = event.pageY + 40,
+                    this.arrowBottom = true)
+                  :
+                    (this.tooltipTop = event.pageY - 210,
+                    this.arrowBottom = false);
   }
 
   onMouseLeave(index: any) {
