@@ -1,0 +1,22 @@
+<td (mouseleave)="onMouseLeave(certificate)">
+    <a (click)="clicked(certificate, $event)"
+        class="description--link"> {{ certificate.name }} </a>
+
+    <div *ngIf="certificate.description !== '' && show"
+        class="description__tooltip"
+        [ngClass]="{'description__tooltip--bottom': !arrowBottom , 'description__tooltip--top': arrowBottom}"
+        [innerHTML]='certificate.description | safeHtml'
+        [style.left.px]="tooltipLeft"
+        [style.top.px]="tooltipTop">
+    </div>
+    <div *ngIf="certificate.description === '' && show"
+        class="description__tooltip"
+        [ngClass]="{'description__tooltip--bottom': !arrowBottom , 'description__tooltip--top': arrowBottom}"
+        [style.left.px]="tooltipLeft"
+        [style.top.px]="tooltipTop">
+        <div>
+            No description was found for certificate: <strong>"{{ certificate.name }}"</strong>. Sorry bro :(
+        </div>
+    </div>
+</td>
+<td> от {{ certificate.price.period[0].cost }} {{ certificate.price.currency }}</td>

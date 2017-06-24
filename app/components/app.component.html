@@ -2,26 +2,13 @@
   <div class="row centered">
     <div class="col col-6">
       <h2>SSL pricelist</h2>
-
       <table>
         <tbody>
-          <tr *ngFor="let item of pricelist; let i = id">
-            <td (mouseleave)="onMouseLeave(item)">
-              <a (click)="clicked(item, $event)"
-                  class="description--link"> {{ item.name }}</a>
-              <div  *ngIf="show === item"
-                    class="description__tooltip"
-                    [ngClass]="{'description__tooltip--bottom': !arrowBottom , 'description__tooltip--top': arrowBottom}"
-                    [innerHTML]='item.description | safeHtml'
-                    [style.left.px]="tooltipLeft"
-                    [style.top.px]="tooltipTop">
-              </div>
-            </td>
-            <td> от {{ item.price.period[0].cost }} {{ item.price.currency }}</td>
-          </tr>
+            <tr app-table
+              *ngFor="let item of pricelist; let i = id"
+              [certificate]="item"></tr>
         </tbody>
       </table>
-
     </div>
   </div>
 </div>
