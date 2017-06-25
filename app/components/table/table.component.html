@@ -1,6 +1,8 @@
 <td (mouseleave)="onMouseLeave(certificate)">
-    <a (click)="clicked(certificate, $event)"
-        class="description--link"> {{ certificate.name }} </a>
+
+    <a (click)="onSelected($event)"
+        class="description--link"
+        [class.active]="show"> {{ certificate.name }} </a>
 
     <div *ngIf="certificate.description !== '' && show"
         class="description__tooltip"
@@ -9,6 +11,8 @@
         [style.left.px]="tooltipLeft"
         [style.top.px]="tooltipTop">
     </div>
+
+    <!-- Because Angular 2.4.0 not support ngIfElse conditions.-->
     <div *ngIf="certificate.description === '' && show"
         class="description__tooltip"
         [ngClass]="{'description__tooltip--bottom': !arrowBottom , 'description__tooltip--top': arrowBottom}"
@@ -18,5 +22,6 @@
             No description was found for certificate: <strong>"{{ certificate.name }}"</strong>. Sorry bro :(
         </div>
     </div>
+    
 </td>
 <td> от {{ certificate.price.period[0].cost }} {{ certificate.price.currency }}</td>

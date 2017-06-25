@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // import table.model  constructor
@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: '[app-table]',
   templateUrl: './app/components/table/table.component.html',
-  styleUrls: ['./app/components/table/table.component.css']
+  styleUrls: ['./app/components/table/table.component.css'],
 })
 
 export class TableComponent {
@@ -17,15 +17,15 @@ export class TableComponent {
   arrowBottom: boolean;
   show: boolean = false;
 
-  clicked(index: any, event: any) {
-    this.show = true;
-    this.tooltipLeft = event.pageX - 35;
+  onSelected(event: any) {
+      this.show = true;
+      this.tooltipLeft = event.pageX - 35;
 
-    event.y < 500 ? (this.tooltipTop = event.pageY + 25,
-                    this.arrowBottom = true)
-                    :
-                    (this.tooltipTop = event.pageY - 25,
-                    this.arrowBottom = false);
+      event.y < 500 ? (this.tooltipTop = event.pageY + 25,
+                      this.arrowBottom = true)
+                      : 
+                      (this.tooltipTop = event.pageY - 25,
+                      this.arrowBottom = false);
   }
 
   onMouseLeave(index: any) {
